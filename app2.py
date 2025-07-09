@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import os
 from groq import Groq  # new import
+import numpy as np
 
 import json
 from sklearn.preprocessing import LabelEncoder
@@ -19,7 +20,7 @@ with open("label_encoder.json", "r") as f:
     label_classes = json.load(f)
 
 label_encoder = LabelEncoder()
-label_encoder.classes_ = label_classes
+label_encoder.classes_ = np.array(label_classes)
 
 # Set your Groq API key
 groq_api_key = os.getenv("GROQ_API_KEY")  # or hardcode 'gsk-xxxxx...'
