@@ -4,8 +4,22 @@ import joblib
 import os
 from groq import Groq  # new import
 
-# Load model and label encoder
-model, feature_columns, label_encoder = joblib.load("model_xgb_missing.pkl")
+import json
+from sklearn.preprocessing import LabelEncoder
+
+# Load model
+model = joblib.load("model.pkl")
+
+# Load feature columns
+with open("feature_columns.json", "r") as f:
+    feature_columns = json.load(f)
+
+# Load label encoder classes and rebuild encoder
+with open("label_encoder.json", "r") as f:
+    label_classes = json.load(f)
+
+label_encoder = LabelEncoder()
+label_encoder.classes_ = label_classes
 
 # Set your Groq API key
 groq_api_key = os.getenv("GROQ_API_KEY")  # or hardcode 'gsk-xxxxx...'
