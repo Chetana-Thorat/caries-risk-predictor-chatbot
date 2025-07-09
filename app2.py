@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import joblib
 import os
-import openai  # placeholder if fallback needed
 from groq import Groq  # new import
 
 # Load model and label encoder
